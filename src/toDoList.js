@@ -54,8 +54,6 @@ const ToDoList = () => {
           </div>
         </div>
 
-        
-    
           {
             currentPage > 1 ? 
             <button className="Button" onClick={() => setCurrentPage(currentPage - 1)}> previos </button> : null
