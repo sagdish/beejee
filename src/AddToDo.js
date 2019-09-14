@@ -23,7 +23,9 @@ const AddToDo = () => {
     formData.append("email", email);
     formData.append("text", text);
     axios.post('https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=zach', formData);
-    
+    setUser('');
+    setEmail('');
+    setText('');
   }
 
   return(
