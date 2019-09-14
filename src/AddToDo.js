@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-import {getToDos} from './ToDoContext';
 import {ToDoContext} from './ToDoContext';
 
 const AddToDo = () => {
