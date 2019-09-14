@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .Tasks {
@@ -15,7 +16,7 @@
 
 .Task {
   width: 300px;
-  height: 200px;
+  height: 350px;
   border: 1px solid teal;
 }
 
@@ -23,4 +24,10 @@
   /* width: 80%; */
   height: 50px;
   text-align: center;
+}
+
+.Button {
+  min-width: 50px;
+  height: 30px;
+  margin: 10px;
 }

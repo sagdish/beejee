@@ -6,10 +6,10 @@ const ToDo = (props) => {
 
   return(
     <div className="Task">
-      <h3>Name: {props.todo.username}</h3>
+      <h2><span style={{fontStyle: "italic"}}>name: </span>{props.todo.username}</h2>
       <p>email address: {props.todo.email}</p>
-      <input type="checkbox" checked={false} style={{"display": 'inline-block'}} />
-      <p style={{"display": 'inline-block'}}>task: {props.todo.text}</p>
+      {/* <input type="checkbox" checked={false} style={{"display": 'inline-block'}} /> */}
+      <p style={{"display": 'inline-block'}}><span style={{fontStyle: "italic"}}>task: </span>{props.todo.text}</p>
     </div>
   );
 

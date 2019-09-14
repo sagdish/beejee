@@ -21,7 +21,7 @@ export const ToDoProvider = props => {
   const [toggle, setToggle] = useState(true);
   const [sort, setSort] = useState('id');
   const [direction, setDirection] = useState('asc');
-  
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(()=> {
@@ -35,7 +35,7 @@ export const ToDoProvider = props => {
       })
       .then(todos => {
         setToDos(todos);
-        // console.log(todos);
+        setLoading(false);
       })
       .catch(err => console.log('error in effect hook: ', err));
   }, [currentPage, toggle, sort, direction]);
@@ -47,7 +47,8 @@ export const ToDoProvider = props => {
       currentPage, setCurrentPage,
       toggle, setToggle,
       sort, setSort,
-      direction, setDirection
+      direction, setDirection,
+      loading, setLoading
     ]}>
       {props.children}
     </ToDoContext.Provider>

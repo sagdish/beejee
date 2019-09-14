@@ -12,7 +12,8 @@ const ToDoList = () => {
     currentPage, setCurrentPage,
     toggle, setToggle,
     sort, setSort,
-    direction, setDirection
+    direction, setDirection,
+    loading, setLoading
   ] = useContext(ToDoContext);
   
   const isInt = n => n % 1 === 0;
@@ -21,43 +22,50 @@ const ToDoList = () => {
 
   return(
     <div>
-      Todos count: {taskCount}
-      <div className="Tasks">
-        {todos.map(todo => (
-          <div key={todo.id}>
-            <ToDo todo={todo} />
-          </div>
-        ))}
-      </div>
-      <br/>
+      {loading ? <div className="Tasks">Loading ... </div> :
+        <>
+        <p>Todos count: {taskCount}</p>
+        <div className="Tasks">
+          {todos.map(todo => (
+            <div key={todo.id}>
+              <ToDo todo={todo} />
+            </div>
+          ))}
+        </div>
+        <br/>
 
-      <div>
-        <div>sort by: 
-          <button onClick={() => setSort('username')}>username</button>
-          <button onClick={() => setSort('id')}>ID</button>
-          <button onClick={() => setSort('email')}>email</button>
-          <button onClick={() => setSort('status')}>completed</button>
-          <button onClick={() => direction === "asc" ? setDirection('desc') : setDirection('asc')}>
-            {direction === "asc" ? "Descending" : "Ascending"}</button>
+        <div>
+          <div>sort by: 
+            <button className="Button" onClick={() => setSort('username')}>username</button>
+            <button className="Button" onClick={() => setSort('id')}>ID</button>
+            <button className="Button" onClick={() => setSort('email')}>email</button>
+            <button className="Button" onClick={() => setSort('status')}>completed</button>
+            <button className="Button" onClick={() => direction === "asc" ? setDirection('desc') : setDirection('asc')}>
+              {direction === "asc" ? "Descending" : "Ascending"}</button>
+          </div>
+
+          <div style={{margin: 10}}>
+            Current Page: {currentPage}
+            <br/>
+            Total pages: {totalPages}
+            <br/>
+            Go to Page:
+            <Pagination pages={totalPages} />
+          </div>
         </div>
 
-        <br/>
-        Total pages: {totalPages}
-        <br/>
-        Go to Page:
-        <Pagination pages={totalPages} />
-      </div>
-
-      Current Page: {currentPage}
-        <br/>
-        {
-          currentPage > 1 ? 
-          <button onClick={() => setCurrentPage(currentPage - 1)}> previos </button> : null
-        }
-        {
-          currentPage * 3 >= taskCount ? null :
-          <button onClick={() => setCurrentPage(currentPage + 1)}> next </button>
-        }
+        
+    
+          {
+            currentPage > 1 ? 
+            <button className="Button" onClick={() => setCurrentPage(currentPage - 1)}> previos </button> : null
+          }
+          {
+            currentPage * 3 >= taskCount ? null :
+            <button className="Button" onClick={() => setCurrentPage(currentPage + 1)}> next </button>
+          }
+        </>
+      }
     </div>
   );
 

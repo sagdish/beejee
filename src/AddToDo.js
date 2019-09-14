@@ -28,14 +28,19 @@ const AddToDo = () => {
   const addTodo = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("username", user);
-    formData.append("email", email);
-    formData.append("text", text);
-    axios.post('https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=zach', formData);
-    setToggle(!toggle)
-    setUser('');
-    setEmail('');
-    setText('');
+    if (user.length > 2 && email.includes('@') && text.length > 3) {
+      formData.append("username", user);
+      formData.append("email", email);
+      formData.append("text", text);
+      axios.post('https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=zach', formData);
+      setToggle(!toggle)
+      setUser('');
+      setEmail('');
+      setText('');
+      alert("new task was created");
+    } else {
+      alert("Please enter valid credentials")
+    }
   }
 
   return(
