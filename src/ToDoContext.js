@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 
-async function getToDos(page) {
+export async function getToDos(page) {
   try{
     const response = await axios.get(`https://uxcandy.com/~shapoval/test-task-backend/v2?developer=zach&page=${page}`);
     console.log(response);
@@ -17,13 +17,14 @@ export const ToDoContext = createContext();
 export const ToDoProvider = props => {
   const [toDos, setToDos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [tasks, setTasks] = useState('');
+  const [taskCount, setTaskCount] = useState('');
+  const [toggle, setToggle] = useState(true);
 
 
   useEffect(()=> {
     getToDos(currentPage)
       .then(response => {
-        setTasks(response.data.message.total_task_count)
+        setTaskCount(response.data.message.total_task_count)
         return response.data.message.tasks.map(todo => {
           const { username, email, text, id, status } = todo;
           return { username, email, text, id, status }
@@ -34,26 +35,17 @@ export const ToDoProvider = props => {
         // console.log(todos);
       })
       .catch(err => console.log('error in effect hook: ', err));
-  }, []);
+  }, [currentPage, toggle]);
 
   return (
-    <ToDoContext.Provider value={[toDos, setToDos, tasks]}>
+    <ToDoContext.Provider value={[
+      toDos, setToDos,
+      taskCount, setTaskCount,
+      currentPage, setCurrentPage,
+      toggle, setToggle
+    ]}>
       {props.children}
     </ToDoContext.Provider>
   );
 
 }
-
-
-// {
-//   username: 'bob',
-//   id: 1,
-//   text: 'some text',
-//   email: 'email@email.com'
-// },
-// {
-//   username: 'marley',
-//   id: 2,
-//   text: 'some text',
-//   email: 'email@email.com'
-// }

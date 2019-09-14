@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+
+import {getToDos} from './ToDoContext';
+import {ToDoContext} from './ToDoContext';
 
 const AddToDo = () => {
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [text, setText] = useState('');
+
+  const [ todos, setTodos,
+    taskCount, setTaskCount,
+    currentPage, setCurrentPage,
+    toggle, setToggle
+  ] = useContext(ToDoContext);
 
   const updateUser = (e) => {
     setUser(e.target.value);
@@ -23,6 +32,7 @@ const AddToDo = () => {
     formData.append("email", email);
     formData.append("text", text);
     axios.post('https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=zach', formData);
+    setToggle(!toggle)
     setUser('');
     setEmail('');
     setText('');

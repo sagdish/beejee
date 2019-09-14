@@ -4,9 +4,9 @@ const ToDo = (props) => {
 
   return(
     <div>
-      <h1>{props.todo.username}</h1>
-      <p>{props.todo.email}</p>
-      <p>{props.todo.text}</p>
+      <h3>Name: {props.todo.username}</h3>
+      <p>email address: {props.todo.email}</p>
+      <p>task: {props.todo.text}</p>
     </div>
   );
 
