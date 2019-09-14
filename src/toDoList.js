@@ -1,9 +1,9 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext } from 'react';
 
 import {ToDoContext} from './ToDoContext';
 import ToDo from './ToDo.js';
 import Pagination from './Pagination';
-
+import './App.css';
 
 const ToDoList = () => {
   console.log(useContext(ToDoContext))
@@ -22,11 +22,13 @@ const ToDoList = () => {
   return(
     <div>
       Todos count: {taskCount}
-      {todos.map(todo => (
-         <Fragment key={todo.id}>
-           <ToDo todo={todo} />
-         </Fragment>
-      ))}
+      <div className="Tasks">
+        {todos.map(todo => (
+          <div key={todo.id}>
+            <ToDo todo={todo} />
+          </div>
+        ))}
+      </div>
       <br/>
 
       <div>

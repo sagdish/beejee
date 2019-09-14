@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
 import {ToDoContext} from './ToDoContext';
+import './App.css'
 
 const AddToDo = () => {
   const [user, setUser] = useState('');
@@ -38,7 +39,7 @@ const AddToDo = () => {
   }
 
   return(
-    <form onSubmit={addTodo}>
+    <form onSubmit={addTodo} className="Form">
       <input type="text" name='user' value={user} onChange={updateUser} placeholder="user name" />
       <input type="text" name='email' value={email} onChange={updateEmail} placeholder="email" />
       <input type="text" name='text' value={text} onChange={updateText} placeholder="text"/>
